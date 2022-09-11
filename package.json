@@ -1,0 +1,21 @@
+{
+  "name": "app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build:watch": "onchange src -- yarn build",
+    "build": "browserify ./src/js/main.js -o ./lib/js/main.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ @babel/plugin-transform-react-jsx ] ]"
+  },
+  "author": "abxlfazl khxrshidi",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.18.10",
+    "@babel/core": "^7.19.0",
+    "@babel/plugin-transform-react-jsx": "^7.19.0",
+    "@babel/preset-env": "^7.19.0",
+    "babelify": "^10.0.0",
+    "browserify": "^17.0.0",
+    "onchange": "^7.1.0"
+  }
+}

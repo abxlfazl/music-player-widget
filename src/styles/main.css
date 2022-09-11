@@ -1,0 +1,21 @@
+@font-face {
+  font-family: Avenir;
+  src: url(../assets/font/AvenirNextRoundedProMedium.TTF);
+}
+
+html {
+  box-sizing: border-box;
+}
+html *,
+html *::before,
+html *::after {
+  box-sizing: inherit;
+}
+body {
+  margin: 0;
+  display: flex;
+  font-family: Avenir;
+  align-items: center;
+  justify-content: center;
+  height: calc(var(--vH) * 100);
+}
