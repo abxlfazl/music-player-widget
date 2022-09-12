@@ -4,8 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build:watch": "onchange src -- yarn build",
-    "build": "browserify ./src/js/main.js -o ./lib/js/main.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ @babel/plugin-transform-react-jsx ] ]"
+    "rm": "rimraf ./build",
+    "compile:js": "browserify ./src/js/main.js -o ./build/js/main.js -t [ babelify --presets [ @babel/preset-env ] --plugins [ @babel/plugin-transform-react-jsx ] ]",
+    "watch": "onchange \"./src/js/**/*.js\" -- yarn compile:js",
+    "server": "browser-sync start --server ./src --serveStatic ./build --files ./src, ./build ",
+    "dev": "run-p rm compile:js watch server"
   },
   "author": "abxlfazl khxrshidi",
   "license": "ISC",
@@ -15,7 +18,10 @@
     "@babel/plugin-transform-react-jsx": "^7.19.0",
     "@babel/preset-env": "^7.19.0",
     "babelify": "^10.0.0",
+    "browser-sync": "^2.27.10",
     "browserify": "^17.0.0",
-    "onchange": "^7.1.0"
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "rimraf": "^3.0.2"
   }
 }

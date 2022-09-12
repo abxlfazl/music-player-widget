@@ -19,3 +19,6 @@ body {
   justify-content: center;
   height: calc(var(--vH) * 100);
 }
+.ok {
+  color: red;
+}
