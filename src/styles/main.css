@@ -86,7 +86,7 @@ body {
   --box-shadow: 0 2px 6px 1px #0000001f;
 
   --color-text-1: #000;
-  --color-text-2: #00000086;
+  --color-text-2: #0000006b;
 
   --cover-size: 61px;
   --border-radius: 26px;
@@ -173,7 +173,8 @@ body {
   font-size: 20px;
 }
 .music-player__song-name {
-  font-size: 13.5px;
+  font-size: 13.6px;
+  font-weight: bold;
   color: var(--color-text-2);
 }
 .progress {
@@ -205,4 +206,34 @@ body {
   position: absolute;
   border-radius: 100%;
   background-color: var(--color-blue-dark);
+}
+.music-player__playlist {
+  height: 100%;
+  overflow: hidden auto;
+  padding: 20.5px 17.5px 0 25.625px;
+}
+.music-player__playlist::-webkit-scrollbar {
+  width: 0;
+}
+.music-player__song {
+  cursor: pointer;
+  margin-bottom: 12px;
+  padding-bottom: 12px;
+  border-bottom: 1.938px solid #d8d8d859;
+}
+.music-player__song-img {
+  width: var(--cover-size);
+  height: var(--cover-size);
+  border-radius: var(--border-radius);
+}
+.music-player__playlist-info {
+  width: 100%;
+  line-height: 1.6;
+  font-size: 17.1px;
+  margin-left: 12.6px;
+}
+.music-player__song-duration {
+  font-size: 12.6px;
+  font-weight: bold;
+  color: var(--color-text-2);
 }

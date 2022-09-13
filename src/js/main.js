@@ -4,6 +4,7 @@ function App() {
   return (
     <div class="music-player flex-column">
       <Slider />
+      <Playlist />
     </div>
   );
 }
