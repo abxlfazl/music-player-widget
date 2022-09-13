@@ -1,5 +1,3 @@
-import { dom } from "./jsx";
-
 /** @jsx dom */
 
 function App() {

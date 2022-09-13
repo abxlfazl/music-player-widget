@@ -1,6 +1,4 @@
-"use strict";
-
-export function dom(tag, props, ...children) {
+function dom(tag, props, ...children) {
   if (typeof tag === "function") return tag(props, ...children);
 
   function addChild(parent, child) {
