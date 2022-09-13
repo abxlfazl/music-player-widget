@@ -1,7 +1,11 @@
 /** @jsx dom */
 
 function App() {
-  return <div></div>;
+  return (
+    <div class="music-player flex-column">
+      <Slider />
+    </div>
+  );
 }
 
 document.getElementById("root").appendChild(<App />);
