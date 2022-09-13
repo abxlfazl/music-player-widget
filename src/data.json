@@ -1,0 +1,76 @@
+{
+  "songs": [
+    {
+      "bg": "#c9bea2",
+      "artist": "sickick",
+      "songName": "talking to the moon (bruno mars remix)",
+      "files": {
+        "song": "./assets/media/songs/1/song.mp3",
+        "cover": "./assets/media/songs/1/img.jpg"
+      }
+    },
+    {
+      "bg": "#32a8eff0",
+      "artist": "bless you",
+      "songName": "driving",
+      "files": {
+        "song": "./assets/media/songs/2/song.mp3",
+        "cover": "./assets/media/songs/2/img.jpg"
+      }
+    },
+    {
+      "bg": "#f8c802b3",
+      "artist": "lil uzi vert",
+      "songName": "demon high",
+      "files": {
+        "song": "./assets/media/songs/3/song.mp3",
+        "cover": "./assets/media/songs/3/img.jpg"
+      }
+    },
+    {
+      "bg": "#ffc382",
+      "artist": "travis scott",
+      "songName": "a man",
+      "files": {
+        "song": "./assets/media/songs/4/song.mp3",
+        "cover": "./assets/media/songs/4/img.jpg"
+      }
+    },
+    {
+      "bg": "#ffcbdc",
+      "artist": "randall",
+      "songName": "waharan",
+      "files": {
+        "song": "./assets/media/songs/5/song.mp3",
+        "cover": "./assets/media/songs/5/img.jpg"
+      }
+    },
+    {
+      "bg": "#44c16fb5",
+      "artist": "tritonal",
+      "songName": "diamonds (feat. rose darling)",
+      "files": {
+        "song": "./assets/media/songs/6/song.mp3",
+        "cover": "./assets/media/songs/6/img.jpg"
+      }
+    },
+    {
+      "bg": "#ed2c2c",
+      "artist": "the weeknd",
+      "songName": "blinding lights",
+      "files": {
+        "song": "./assets/media/songs/7/song.mp3",
+        "cover": "./assets/media/songs/7/img.jpg"
+      }
+    },
+    {
+      "bg": "#e5e7e9",
+      "artist": "arizona zervas",
+      "songName": "no i in team",
+      "files": {
+        "song": "./assets/media/songs/8/song.mp3",
+        "cover": "./assets/media/songs/8/img.jpg"
+      }
+    }
+  ]
+}
