@@ -221,6 +221,9 @@ body {
   padding-bottom: 12px;
   border-bottom: 1.938px solid #d8d8d859;
 }
+.music-player__song audio {
+  display: none;
+}
 .music-player__song-img {
   width: var(--cover-size);
   height: var(--cover-size);
