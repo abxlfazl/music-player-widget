@@ -3,7 +3,7 @@
 function App({ songs }) {
   return (
     <div class="music-player flex-column">
-      <Slider />
+      <Slider slides={songs} />
       <Playlist list={songs} />
     </div>
   );

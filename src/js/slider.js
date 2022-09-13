@@ -1,6 +1,6 @@
 /** @jsx dom */
 
-function Slider() {
+function Slider({ slides }) {
   return (
     <div class="slider center">
       <div class="slider__content center">
@@ -9,7 +9,9 @@ function Slider() {
           <i class="icon-pause" />
         </button>
         <div class="slider__imgs flex-row">
-          <img src="../../assets/media/songs/4/img.jpg" class="img" />
+          {slides.map(({ songName, files: { cover } }) => (
+            <img src={cover} class="img" alt={songName} />
+          ))}
         </div>
       </div>
       <div class="slider__controls center">
@@ -17,8 +19,8 @@ function Slider() {
           <i class="icon-back" />
         </button>
         <div class="music-player__info text_trsf-cap">
-          <div class="music-player__singer-name">travis scott</div>
-          <div class="music-player__song-name">a man</div>
+          <div class="music-player__singer-name">{slides[0].artist}</div>
+          <div class="music-player__song-name">{slides[0].songName}</div>
         </div>
         <button class="slider__switch-button flex-row button">
           <i class="icon-next" />
