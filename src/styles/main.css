@@ -25,6 +25,10 @@ body {
   background-color: var(--body-bg, #e5e7e9);
   transition: var(--duration) background-color var(--ease-slider);
 }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
 
 /* PUBLIC CLASSES */
 
@@ -78,6 +82,13 @@ body {
 }
 ._justify_space-btwn {
   justify-content: space-between;
+}
+.text_overflow {
+  width: 66%;
+  overflow: hidden;
+  white-space: nowrap;
+  display: inline-block;
+  text-overflow: ellipsis;
 }
 
 /* PUBLIC CLASSES */
@@ -242,16 +253,16 @@ body {
   font-size: 20px;
   width: max-content;
 }
-.music-player__song-name {
+.music-player__subtitle {
   font-size: 13.6px;
   font-weight: bold;
   color: var(--color-text-2);
 }
-.slider__controls .music-player__song-name {
+.slider__controls .music-player__subtitle {
   width: max-content;
 }
-.music-player__singer-name.isSubtitle,
-.music-player__song-name.isSubtitle {
+.music-player__singer-name.animate,
+.music-player__subtitle.animate {
   --subtitle-gap: 25px;
 
   display: flex;
@@ -303,9 +314,6 @@ body {
   overflow: hidden auto;
   padding: 20.5px 17.5px 0 25.625px;
 }
-.music-player__playlist::-webkit-scrollbar {
-  width: 0;
-}
 .music-player__song {
   cursor: pointer;
   margin-bottom: 12px;
@@ -322,7 +330,8 @@ body {
 }
 .music-player__playlist-info {
   width: 100%;
-  line-height: 1.6;
+  overflow: hidden;
+  line-height: 1.3;
   font-size: 17.1px;
   margin-left: 12.6px;
 }

@@ -1,5 +1,6 @@
 /** @jsx dom */
 
+let indexSong = 0;
 let isLocked = false;
 let songName_elmnt = null;
 let sliderImgs_elmnt = null;
@@ -7,20 +8,21 @@ let singerName_elmnt = null;
 let musicPlayerInfo_elmnt = null;
 
 function App({ songs }) {
-  let indexSong = 0;
   const songsLength = songs.length - 1;
 
-  function handleChangeMusic({ isPrev = false }) {
+  function handleChangeMusic({ isPrev = false, playListIndex = null }) {
     if (isLocked) return;
 
-    indexSong = isPrev ? (indexSong -= 1) : (indexSong += 1);
+    if (playListIndex || playListIndex === 0) {
+      indexSong = playListIndex;
+    } else {
+      indexSong = isPrev ? (indexSong -= 1) : (indexSong += 1);
+    }
 
     if (indexSong < 0) {
       indexSong = 0;
       return;
-    }
-
-    if (indexSong > songsLength) {
+    } else if (indexSong > songsLength) {
       indexSong = songsLength;
       return;
     }
@@ -37,7 +39,7 @@ function App({ songs }) {
   return (
     <div class="music-player flex-column">
       <Slider slides={songs} handleChangeMusic={handleChangeMusic} />
-      <Playlist list={songs} />
+      <Playlist list={songs} handleChangeMusic={handleChangeMusic} />
     </div>
   );
 }
@@ -77,7 +79,7 @@ fetch("../data.json")
         querySelector("#root").appendChild(<App songs={data} />);
 
         sliderImgs_elmnt = querySelector(".slider__imgs");
-        songName_elmnt = querySelector(".music-player__song-name");
+        songName_elmnt = querySelector(".music-player__subtitle");
         musicPlayerInfo_elmnt = querySelector(".music-player__info");
         singerName_elmnt = querySelector(".music-player__singer-name");
 
@@ -91,11 +93,11 @@ function controlSubtitleAnimation(parent, child) {
   const element = child.firstChild;
 
   if (child.clientWidth > parent.clientWidth) {
-    if (child.classList.contains("isSubtitle")) return;
+    if (child.classList.contains("animate")) return;
     child.appendChild(element.cloneNode(true));
-    child.classList.add("isSubtitle");
+    child.classList.add("animate");
   } else {
-    child.classList.remove("isSubtitle");
+    child.classList.remove("animate");
   }
 
   setProperty(child.parentElement, "width", `${element.clientWidth}px`);

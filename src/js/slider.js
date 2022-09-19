@@ -45,7 +45,7 @@ function Slider({ slides, handleChangeMusic }) {
             </div>
           </div>
           <div>
-            <div class="music-player__song-name">
+            <div class="music-player__subtitle">
               <div>{slides[0].songName}</div>
             </div>
           </div>

@@ -1,6 +1,6 @@
 /** @jsx dom */
 
-function Playlist({ list }) {
+function Playlist({ list, handleChangeMusic }) {
   function loadedAudio() {
     const duration = this.duration;
     const target = this.parentElement.querySelector(
@@ -15,17 +15,23 @@ function Playlist({ list }) {
 
     target.appendChild(document.createTextNode(`${min}:${sec}`));
   }
+
   return (
     <ul class="music-player__playlist list">
-      {list.map(({ songName, artist, files: { cover, song } }) => {
+      {list.map(({ songName, artist, files: { cover, song } }, index) => {
         return (
-          <li class="music-player__song">
+          <li
+            class="music-player__song"
+            onClick={() =>
+              handleChangeMusic({ isPrev: false, playListIndex: index })
+            }
+          >
             <div class="flex-row _align_center">
               <img src={cover} class="img music-player__song-img" />
               <div class="music-player__playlist-info  text_trsf-cap">
-                <b>{songName}</b>
+                <b class="text_overflow">{songName}</b>
                 <div class="flex-row _justify_space-btwn">
-                  <span class="music-player__song-name">{artist}</span>
+                  <span class="music-player__subtitle">{artist}</span>
                   <span class="music-player__song-duration"></span>
                 </div>
               </div>
