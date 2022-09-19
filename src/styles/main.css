@@ -104,12 +104,12 @@ body {
   --color-text-1: #000;
   --color-text-2: #0000006b;
 
-  --cover-size: 61px;
-  --border-radius: 26px;
+  --cover-size: 3.8125em;
+  --border-radius: 1.625em;
 
-  --music-player-height: 390px;
+  --music-player-height: 24.375em;
 
-  width: 335px;
+  width: 20.9375em;
   overflow: hidden;
   user-select: none;
   color: var(--color-text-1);
@@ -121,8 +121,8 @@ body {
   --shadow-opacity: 1;
 
   z-index: 0;
-  height: 114px;
   flex-shrink: 0;
+  height: 7.125em;
   position: relative;
   border-radius: inherit;
   transition: var(--duration) height var(--ease-timeline);
@@ -148,6 +148,8 @@ body {
   transition: var(--duration) opacity;
 }
 .slider__content {
+  --offset: 1.60125em;
+
   top: 0;
   left: 0;
   overflow: hidden;
@@ -157,24 +159,26 @@ body {
   height: var(--cover-size);
   transition: transform, width, height;
   transition-duration: var(--duration);
-  transform: translate3d(25.62px, 25.62px, 0);
   transition-timing-function: var(--ease-timeline);
+  transform: translate3d(var(--offset), var(--offset), 0);
 }
 .slider.resize .slider__content {
   width: 100%;
-  height: 285px;
+  height: 17.8125em;
   transform: translate3d(0, 0, 0);
 }
 .slider__content .button {
+  --size: 3em;
+
   z-index: 1;
-  width: 48px;
-  height: 48px;
   position: absolute;
+  width: var(--size);
+  height: var(--size);
 }
 .slider__content i {
-  font-size: 3rem;
   position: absolute;
   pointer-events: none;
+  font-size: var(--size);
 }
 .music-player__playlist-button {
   top: 5.5%;
@@ -204,17 +208,17 @@ body {
   pointer-events: none;
 }
 .slider__controls {
-  --controls-x: 17.3%;
   --controls-y: 145%;
+  --controls-x: 17.3%;
   --controls-width: 68.4%;
   --controls-resize-width: 88%;
   /* Animation performance is better than transition */
 
-  gap: 6px 0;
+  gap: 0.375em 0;
   flex-wrap: wrap;
-  padding-top: 6px;
   position: absolute;
   align-items: center;
+  padding-top: 0.375em;
   width: var(--controls-width);
   transform: translate3d(var(--controls-x), 0, 0);
   animation: var(--controls-animate, "down paused") var(--duration)
@@ -237,16 +241,16 @@ body {
   }
 }
 .slider__switch-button {
-  font-size: 3rem;
+  font-size: 3em;
   height: max-content;
 }
 .music-player__info {
   width: 56.3%;
-  padding: 0 1px;
   cursor: pointer;
   line-height: 1.8;
   overflow: hidden;
   font-weight: bold;
+  padding: 0 0.0625em;
   white-space: nowrap;
 }
 .music-player__info > * {
@@ -254,11 +258,11 @@ body {
   pointer-events: none;
 }
 .music-player__singer-name {
-  font-size: 20px;
+  font-size: 1.25em;
   width: max-content;
 }
 .music-player__subtitle {
-  font-size: 13.6px;
+  font-size: 0.85em;
   font-weight: bold;
   color: var(--color-text-2);
 }
@@ -267,7 +271,7 @@ body {
 }
 .music-player__singer-name.animate,
 .music-player__subtitle.animate {
-  --subtitle-gap: 25px;
+  --subtitle-gap: 1.5625em;
 
   display: flex;
   gap: 0 var(--subtitle-gap);
@@ -281,7 +285,7 @@ body {
 }
 .progress {
   width: 90%;
-  height: 20px;
+  height: 1.25em;
   cursor: pointer;
   transition: var(--duration) width var(--ease-timeline);
 }
@@ -290,9 +294,9 @@ body {
 }
 .progress__wrapper {
   width: 100%;
-  height: 5px;
+  height: 0.3125em;
   position: relative;
-  border-radius: 1rem;
+  border-radius: 1em;
   background-color: var(--color-gray);
 }
 .progress__bar {
@@ -305,23 +309,27 @@ body {
   background-color: var(--color-blue);
 }
 .progress__bar::after {
+  --size: 0.4375em;
+
   left: 98%;
-  width: 7px;
   content: "";
-  height: 7px;
   position: absolute;
+  width: var(--size);
+  height: var(--size);
   border-radius: 100%;
   background-color: var(--color-blue-dark);
 }
 .music-player__playlist {
   height: 100%;
   overflow: hidden auto;
-  padding: 20.5px 17.5px 0 25.625px;
+  padding: 1.28125em 1.09375em 0 1.6015625em;
 }
 .music-player__song {
+  --gap: 0.75em;
+
   cursor: pointer;
-  margin-bottom: 12px;
-  padding-bottom: 12px;
+  margin-bottom: var(--gap);
+  padding-bottom: var(--gap);
   border-bottom: 1.938px solid #d8d8d859;
 }
 .music-player__song audio {
@@ -336,11 +344,27 @@ body {
   width: 100%;
   overflow: hidden;
   line-height: 1.3;
-  font-size: 17.1px;
-  margin-left: 12.6px;
+  font-size: 1.06875em;
+  margin-left: 0.7875em;
 }
 .music-player__song-duration {
-  font-size: 12.6px;
   font-weight: bold;
+  font-size: 0.7875em;
   color: var(--color-text-2);
+}
+
+@media screen and (min-width: 1366px) {
+  .music-player {
+    font-size: 1.17132vw;
+  }
+}
+@media screen and (max-width: 480px) {
+  .music-player {
+    font-size: 0.8rem;
+  }
+}
+@media screen and (max-width: 280px) {
+  .music-player {
+    font-size: 0.6rem;
+  }
 }

@@ -124,7 +124,7 @@ function controlSubtitleAnimation(parent, child) {
 }
 function handleResize() {
   const vH = window.innerHeight * 0.01;
-  document.documentElement.style.setProperty("--vH", `${vH}px`);
+  setProperty(document.documentElement, "--vH", `${vH}px`);
 }
 function querySelector(target) {
   return document.querySelector(target);
