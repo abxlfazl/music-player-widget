@@ -186,8 +186,12 @@ body {
   transform: scale(1);
   transition: 0.35s var(--duration) transform cubic-bezier(0, 0.85, 0.11, 1.64);
 }
-.music-player__broadcast-guarantor .icon-pause {
+.music-player__broadcast-guarantor .icon-pause,
+.music-player__broadcast-guarantor.click .icon-play {
   opacity: 0;
+}
+.music-player__broadcast-guarantor.click .icon-pause {
+  opacity: 1;
 }
 .slider__imgs {
   width: 100%;
@@ -295,13 +299,13 @@ body {
   top: 0;
   left: 0;
   bottom: 0;
-  width: 10%;
   position: absolute;
+  width: var(--width);
   border-radius: inherit;
   background-color: var(--color-blue);
 }
 .progress__bar::after {
-  left: 97%;
+  left: 98%;
   width: 7px;
   content: "";
   height: 7px;

@@ -16,6 +16,27 @@ function Playlist({ list, handleChangeMusic }) {
     target.appendChild(document.createTextNode(`${min}:${sec}`));
   }
 
+  function timeupdate() {
+    const duration = this.duration;
+    const currentTime = this.currentTime;
+
+    const progressBarWidth = (currentTime / duration) * 100;
+    setProperty(progressBar_elmnt, "--width", `${progressBarWidth}%`);
+
+    if (songIsPlayed && currentTime === duration) {
+      handleChangeMusic({});
+    }
+
+    if (
+      indexSong === songsLength &&
+      this === selectedSong &&
+      currentTime === duration
+    ) {
+      songIsPlayed = false;
+      broadcastGuarantor_elmnt.classList.remove("click");
+    }
+  }
+
   return (
     <ul class="music-player__playlist list">
       {list.map(({ songName, artist, files: { cover, song } }, index) => {
@@ -36,7 +57,11 @@ function Playlist({ list, handleChangeMusic }) {
                 </div>
               </div>
             </div>
-            <audio src={song} onLoadeddata={loadedAudio} />
+            <audio
+              src={song}
+              onTimeupdate={timeupdate}
+              onLoadeddata={loadedAudio}
+            />
           </li>
         );
       })}

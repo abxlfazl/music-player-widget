@@ -2,16 +2,22 @@
 
 let indexSong = 0;
 let isLocked = false;
+let songsLength = null;
+let selectedSong = null;
+let songIsPlayed = false;
+let progress_elmnt = null;
 let songName_elmnt = null;
 let sliderImgs_elmnt = null;
 let singerName_elmnt = null;
+let progressBar_elmnt = null;
+let playlistSongs_elmnt = [];
 let musicPlayerInfo_elmnt = null;
+let progressBarIsUpdating = false;
+let broadcastGuarantor_elmnt = null;
 
 function App({ songs }) {
-  const songsLength = songs.length - 1;
-
   function handleChangeMusic({ isPrev = false, playListIndex = null }) {
-    if (isLocked) return;
+    if (isLocked || indexSong === playListIndex) return;
 
     if (playListIndex || playListIndex === 0) {
       indexSong = playListIndex;
@@ -27,11 +33,18 @@ function App({ songs }) {
       return;
     }
 
+    selectedSong.pause();
+    selectedSong.currentTime = 0;
+    progressBarIsUpdating = false;
+    selectedSong = playlistSongs_elmnt[indexSong];
+    selectedSong.paused && songIsPlayed
+      ? selectedSong.play()
+      : selectedSong.pause();
+
+    setBodyBg(songs[indexSong].bg);
+    setProperty(sliderImgs_elmnt, "--index", -indexSong);
     updateInfo(singerName_elmnt, songs[indexSong].artist);
     updateInfo(songName_elmnt, songs[indexSong].songName);
-
-    setProperty(sliderImgs_elmnt, "--index", -indexSong);
-    setBodyBg(songs[indexSong].bg);
   }
 
   setBodyBg(songs[0].bg);
@@ -78,10 +91,18 @@ fetch("../data.json")
       downloadTheFiles("song", respone).then((data) => {
         querySelector("#root").appendChild(<App songs={data} />);
 
+        songsLength = data.length - 1;
+        progress_elmnt = querySelector(".progress");
+        playlistSongs_elmnt = querySelectorAll("audio");
         sliderImgs_elmnt = querySelector(".slider__imgs");
         songName_elmnt = querySelector(".music-player__subtitle");
         musicPlayerInfo_elmnt = querySelector(".music-player__info");
         singerName_elmnt = querySelector(".music-player__singer-name");
+        selectedSong = playlistSongs_elmnt[indexSong];
+        progressBar_elmnt = querySelector(".progress__bar");
+        broadcastGuarantor_elmnt = querySelector(
+          ".music-player__broadcast-guarantor"
+        );
 
         controlSubtitleAnimation(musicPlayerInfo_elmnt, songName_elmnt);
         controlSubtitleAnimation(musicPlayerInfo_elmnt, singerName_elmnt);
@@ -90,36 +111,33 @@ fetch("../data.json")
   });
 
 function controlSubtitleAnimation(parent, child) {
+  if (child.classList.contains("animate")) return;
+
   const element = child.firstChild;
 
   if (child.clientWidth > parent.clientWidth) {
-    if (child.classList.contains("animate")) return;
     child.appendChild(element.cloneNode(true));
     child.classList.add("animate");
-  } else {
-    child.classList.remove("animate");
   }
 
   setProperty(child.parentElement, "width", `${element.clientWidth}px`);
 }
-
 function handleResize() {
   const vH = window.innerHeight * 0.01;
   document.documentElement.style.setProperty("--vH", `${vH}px`);
 }
-
 function querySelector(target) {
   return document.querySelector(target);
 }
-
+function querySelectorAll(target) {
+  return document.querySelectorAll(target);
+}
 function setProperty(target, prop, value = "") {
   target.style.setProperty(prop, value);
 }
-
 function setBodyBg(color) {
   setProperty(document.body, "--body-bg", color);
 }
-
 function updateInfo(target, value) {
   while (target.firstChild) {
     target.removeChild(target.firstChild);
@@ -128,7 +146,16 @@ function updateInfo(target, value) {
   const targetChild_elmnt = document.createElement("div");
   targetChild_elmnt.appendChild(document.createTextNode(value));
   target.appendChild(targetChild_elmnt);
+  target.classList.remove("animate");
   controlSubtitleAnimation(musicPlayerInfo_elmnt, target);
+}
+function handleScrub(e) {
+  const progressOffsetLeft = progress_elmnt.getBoundingClientRect().left;
+  const progressWidth = progress_elmnt.offsetWidth;
+  const duration = selectedSong.duration;
+  const currentTime = (e.clientX - progressOffsetLeft) / progressWidth;
+
+  selectedSong.currentTime = currentTime * duration;
 }
 
 handleResize();
@@ -149,5 +176,17 @@ window.addEventListener("transitionend", ({ target, propertyName }) => {
   if (target.classList.contains("slider") && propertyName === "height") {
     controlSubtitleAnimation(musicPlayerInfo_elmnt, songName_elmnt);
     controlSubtitleAnimation(musicPlayerInfo_elmnt, singerName_elmnt);
+  }
+});
+window.addEventListener("pointerup", () => {
+  if (progressBarIsUpdating) {
+    selectedSong.muted = false;
+    progressBarIsUpdating = false;
+  }
+});
+window.addEventListener("pointermove", (e) => {
+  if (progressBarIsUpdating) {
+    handleScrub(e, this);
+    selectedSong.muted = true;
   }
 });

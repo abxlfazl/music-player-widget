@@ -14,6 +14,15 @@ function Slider({ slides, handleChangeMusic }) {
       return;
     }
   }
+  function handlePlayMusic() {
+    if (selectedSong.currentTime === selectedSong.duration) {
+      handleChangeMusic({});
+    }
+
+    this.classList.toggle("click");
+    songIsPlayed = !songIsPlayed;
+    selectedSong.paused ? selectedSong.play() : selectedSong.pause();
+  }
 
   return (
     <div class="slider center" onClick={handleResizeSlider}>
@@ -21,7 +30,10 @@ function Slider({ slides, handleChangeMusic }) {
         <button class="music-player__playlist-button center button">
           <i class="icon-playlist" />
         </button>
-        <button class="music-player__broadcast-guarantor center button">
+        <button
+          onClick={handlePlayMusic}
+          class="music-player__broadcast-guarantor center button"
+        >
           <i class="icon-play" />
           <i class="icon-pause" />
         </button>
@@ -56,7 +68,13 @@ function Slider({ slides, handleChangeMusic }) {
         >
           <i class="icon-next" />
         </button>
-        <div class="progress center">
+        <div
+          class="progress center"
+          onPointerdown={(e) => {
+            handleScrub(e);
+            progressBarIsUpdating = true;
+          }}
+        >
           <div class="progress__wrapper">
             <div class="progress__bar center" />
           </div>
