@@ -1,7 +1,7 @@
 {
   "songs": [
     {
-      "bg": "#c9bea2",
+      "bg": "#c9bea28f",
       "artist": "sickick",
       "songName": "talking to the moon (bruno mars remix)",
       "files": {
@@ -10,7 +10,7 @@
       }
     },
     {
-      "bg": "#32a8eff0",
+      "bg": "#0896eba1",
       "artist": "bless you",
       "songName": "driving",
       "files": {
@@ -19,7 +19,7 @@
       }
     },
     {
-      "bg": "#f8c802b3",
+      "bg": "#f8c80280",
       "artist": "lil uzi vert",
       "songName": "demon high",
       "files": {
@@ -55,7 +55,7 @@
       }
     },
     {
-      "bg": "#ed2c2c",
+      "bg": "#ff4545",
       "artist": "the weeknd",
       "songName": "blinding lights",
       "files": {
